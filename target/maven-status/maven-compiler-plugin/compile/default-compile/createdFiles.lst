@@ -1,0 +1,9 @@
+net/viralpatel/contact/dao/ContactDAOImpl.class
+net/viralpatel/contact/dao/ContactDAO.class
+net/viralpatel/contact/service/ContactService.class
+net/viralpatel/contact/form/UserAddress.class
+net/viralpatel/contact/form/User.class
+net/viralpatel/contact/form/Contact.class
+net/viralpatel/contact/service/ContactServiceImpl.class
+net/viralpatel/contact/form/Address.class
+net/viralpatel/contact/controller/ContactController.class
