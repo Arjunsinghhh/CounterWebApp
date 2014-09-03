@@ -4,6 +4,11 @@
 <html>
 <head>
     <title>Spring 3 MVC Series - Contact Manager | viralpatel.net</title>
+    <script type="text/javascript" src="./WEB-INF/app.js"></script>
+     <script type="text/javascript" src="./WEB-INF/AuthenticationController.js"></script>
+      <script type="text/javascript" src="/WEb-INF/AuthenticationForm.js"></script>
+       <script type="text/javascript" src="/WEb-INF/Viewport.js"></script>
+</head>
 </head>
 <body>
  
