@@ -1,4 +1,5 @@
 net/viralpatel/contact/dao/ContactDAOImpl.class
+net/viralpatel/contact/validator/UserFormValidator.class
 net/viralpatel/contact/dao/ContactDAO.class
 net/viralpatel/contact/service/ContactService.class
 net/viralpatel/contact/form/UserAddress.class

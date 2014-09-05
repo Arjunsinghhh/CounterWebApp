@@ -2,18 +2,39 @@ package net.viralpatel.contact.form;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class UserAddress {
 
 	
 	private int id;
+	@NotNull
+	@Size(min=2,max=30)
 	private String street1;
+	@NotNull
+	@Size(min=2,max=30)
 	private String street2;
+	@NotNull
+	@Size(min=2,max=30)
 	private String city;
+	@NotNull
+	@Size(min=2,max=30)
 	private String state;
+	@NotNull
+	@Size(min=2,max=30)
 	private String country;
+	@NotNull
+	@Size(min=2,max=30)
 	private String name;
+	@NotNull
+	@Size(min=2,max=30)
 	private String password;
+	@NotNull
+	@Size(min=2,max=30)
 	private String confirm;
+	@NotNull
+	@Size(min=2,max=30)
 	private String email;
 	private List<Address> address;
 	

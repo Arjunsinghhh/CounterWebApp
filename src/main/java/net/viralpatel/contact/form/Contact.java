@@ -14,7 +14,7 @@ public class Contact {
     @Column(name="ID")
     @GeneratedValue
     private Integer id;
-     
+
     @Column(name="FIRSTNAME")
     private String firstname;
  

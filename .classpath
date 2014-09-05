@@ -24,5 +24,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/srampv/.m2/repository/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="/Users/srampv/.m2/repository/org/hibernate/hibernate-validator/5.1.0.Final/hibernate-validator-5.1.0.Final.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

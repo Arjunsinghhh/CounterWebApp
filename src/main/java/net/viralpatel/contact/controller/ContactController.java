@@ -4,15 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import net.viralpatel.contact.form.Address;
-import net.viralpatel.contact.form.Contact;
 import net.viralpatel.contact.form.User;
 import net.viralpatel.contact.form.UserAddress;
 import net.viralpatel.contact.service.ContactService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +28,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
  
 @Controller
 public class ContactController {
+	private static final Logger log=LoggerFactory.getLogger(ContactController.class);
  
     @Autowired
     private ContactService contactService;
  
+    @Autowired
+    @Qualifier("userValidator")
+    private Validator validator;
+    @InitBinder
+    private void initBinder(WebDataBinder binder){
+    	binder.setValidator(validator);
+    }
     @RequestMapping("/index")
     public String listContacts(Map<String, Object> map) {
  
@@ -47,7 +63,11 @@ public class ContactController {
  
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addContact(@ModelAttribute("userAddress")
-    UserAddress contact, BindingResult result) {
+    @Valid UserAddress contact, BindingResult result,Model model,Map<String, Object> map) {
+    	if(result.hasErrors()){
+    		log.info("<----------------Has Some errors--------->");
+    		return "contact";
+    	}
     	String name=contact.getName();
     	String password=contact.getPassword();
     	String confirm=contact.getConfirm();
@@ -73,8 +93,23 @@ public class ContactController {
     	u.setAddress(list);
  
         contactService.addContact(u);
+        map.put("userAddress", new UserAddress());
+        List<User> users=contactService.listContact();
+        List<UserAddress> userAddress=new ArrayList<UserAddress>();
+        for(User user:users){
+        	List<Address> addr=user.getAddress();
+        	UserAddress ua=new UserAddress();
+        	ua.setName(user.getName());
+        	ua.setPassword(user.getPassword());
+        	ua.setConfirm(user.getConfirm());
+        	ua.setEmail(user.getEmail());
+        	ua.setAddress(addr);
+        	userAddress.add(ua);
+        }
+        map.put("contactList",userAddress );
  
-        return "redirect:/index";
+        return "contactSuccess";
+ 
     }
  
     @RequestMapping("/delete/{contactId}")
